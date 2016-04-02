@@ -11,6 +11,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWinamp;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFoobar2000;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemVlc;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuYouTube;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSetFormat;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -71,6 +72,7 @@
             this.toolStripMenuItemWinamp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemFoobar2000 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemVlc = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuYouTube = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemSetFormat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -107,6 +109,7 @@
             this.toolStripMenuItemWinamp,
             this.toolStripMenuItemFoobar2000,
             this.toolStripMenuItemVlc,
+            this.toolStripMenuYouTube,
             this.toolStripSeparator1,
             this.toolStripMenuItemSetFormat,
             this.toolStripSeparator2,
@@ -165,6 +168,13 @@
             this.toolStripMenuItemVlc.Size = new System.Drawing.Size(67, 22);
             this.toolStripMenuItemVlc.Text = Globals.ResourceManager.GetString("VLC");
             this.toolStripMenuItemVlc.Click += new System.EventHandler(this.PlayerSelectionCheck);
+            //
+            // toolStripMenuYouTube
+            //
+            this.toolStripMenuYouTube.Name = "toolStripMenuYouTube";
+            this.toolStripMenuYouTube.Size = new System.Drawing.Size(67, 22);
+            this.toolStripMenuYouTube.Text = Globals.ResourceManager.GetString("YouTube");
+            this.toolStripMenuYouTube.Click += new System.EventHandler(this.PlayerSelectionCheck);
             // 
             // toolStripSeparator
             // 
