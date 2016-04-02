@@ -3,12 +3,14 @@ SNIP
 Copyright 2012-2016 David Rudie <d.rudie@gmail.com>
 Project Page: [Snip](https://github.com/dlrudie/Snip)
 
+YouTube support (beta) by [nehalist](https://github.com/nehalist).
+
 ABOUT
 =====
 This is a small application that sits in the system tray and updates a text
 file with the currently playing audio track.
 
-It supports Spotify, iTunes, Winamp, foobar2000, and VLC.
+It supports Spotify, iTunes, Winamp, foobar2000, VLC and YouTube (beta).
 
 If you choose to use iTunes then Snip will automatically launch iTunes.  This
 is the behavior of the COM API and there's nothing I can do about it.  If you
@@ -29,6 +31,7 @@ SUPPORTED FEATURES FOR PLAYERS
 * **Winamp:** Artist, Track
 * **foobar2000:** Artist, Track
 * **VLC:** Nothing (It uses whatever the titlebar says)
+* **YouTube:** Artist, Track
 
 WINAMP
 ======
@@ -80,6 +83,14 @@ determine if VLC is running.  If the title bar is anything different then it
 will not be found.  If a track is currently playing when you start Snip you
 just have to push stop and Snip will find VLC.
 
+YOUTUBE (beta)
+===
+By choosing YouTube as a player all Chrome and Firefox tabs are cached. The first 
+tab containing _" - YouTube"_ in the title and a speaker icon will be used.
+In case tabs or windows have changed just re-click on "YouTube" to reload cached tabs.
+
+_Current implementation (UI fetching, caching tabs) should be re-worked. I just don't know how yet._
+
 HOTKEYS
 =======
 * **Next Track:** Ctrl, Alt, ]
@@ -93,4 +104,4 @@ HOTKEYS
 
 Note
 ----
-Not all hotkeys work between Spotify, iTunes, Winamp, foobar2000, and VLC.
+Not all hotkeys work between Spotify, iTunes, Winamp, foobar2000, and VLC. No Hotkeys for YouTube.
