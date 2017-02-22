@@ -157,6 +157,9 @@ namespace Winter
                 case Globals.MediaPlayerSelection.YouTube:
                     this.ToggleYouTube();
                     break;
+                case Globals.MediaPlayerSelection.Plex:
+                    this.TogglePlex();
+                    break;
             }
 
             this.toolStripMenuItemSaveSeparateFiles.Checked = Globals.SaveSeparateFiles;
@@ -242,6 +245,10 @@ namespace Winter
             else if (sender == this.toolStripMenuYouTube)
             {
                 this.ToggleYouTube();
+            }
+            else if (sender == this.toolStripMenuPlex)
+            {
+                this.TogglePlex();
             }
         }
 
@@ -345,6 +352,24 @@ namespace Winter
 
             Globals.PlayerSelection = Globals.MediaPlayerSelection.YouTube;
             TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("SwitchedToYoutube"));
+        }
+
+        private void TogglePlex()
+        {
+            this.toolStripMenuItemSpotify.Checked = false;
+            this.toolStripMenuItemItunes.Checked = false;
+            this.toolStripMenuItemWinamp.Checked = false;
+            this.toolStripMenuItemFoobar2000.Checked = false;
+            this.toolStripMenuItemVlc.Checked = false;
+            this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = true;
+
+            Globals.CurrentPlayer.Unload();
+            Globals.CurrentPlayer = new Plex();
+            Globals.CurrentPlayer.Load();
+
+            Globals.PlayerSelection = Globals.MediaPlayerSelection.Plex;
+            TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("SwitchedToPlex"));
         }
 
         private void ToolStripMenuItemSaveSeparateFiles_Click(object sender, EventArgs e)

@@ -12,6 +12,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFoobar2000;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemVlc;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuYouTube;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuPlex;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSetFormat;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -73,6 +74,7 @@
             this.toolStripMenuItemFoobar2000 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemVlc = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuYouTube = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuPlex = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemSetFormat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -110,6 +112,7 @@
             this.toolStripMenuItemFoobar2000,
             this.toolStripMenuItemVlc,
             this.toolStripMenuYouTube,
+            this.toolStripMenuPlex,
             this.toolStripSeparator1,
             this.toolStripMenuItemSetFormat,
             this.toolStripSeparator2,
@@ -175,6 +178,13 @@
             this.toolStripMenuYouTube.Size = new System.Drawing.Size(67, 22);
             this.toolStripMenuYouTube.Text = Globals.ResourceManager.GetString("YouTube");
             this.toolStripMenuYouTube.Click += new System.EventHandler(this.PlayerSelectionCheck);
+            // 
+            // toolStripMenuPlex
+            // 
+            this.toolStripMenuPlex.Name = "toolStripMenuPlex";
+            this.toolStripMenuPlex.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuPlex.Text = Globals.ResourceManager.GetString("Plex");
+            this.toolStripMenuPlex.Click += new System.EventHandler(this.PlayerSelectionCheck);
             // 
             // toolStripSeparator
             // 

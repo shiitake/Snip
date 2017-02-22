@@ -86,7 +86,8 @@ namespace Winter
             Winamp = 2,
             foobar2000 = 3,
             VLC = 4,
-            YouTube = 5
+            YouTube = 5,
+            Plex = 6
         }
 
         public enum MediaCommand : int
