@@ -61,8 +61,10 @@ namespace Winter
                     if (windowTextLength > 0)
                     {
                         // Only update the system tray text and text file text if the title changes.
-                        if (foobar2000Title != this.LastTitle)
+                        if (foobar2000Title != this.LastTitle || Globals.RewriteUpdatedOutputFormat)
                         {
+                            Globals.RewriteUpdatedOutputFormat = false;
+
                             if (foobar2000Title.StartsWith("foobar2000", StringComparison.OrdinalIgnoreCase))
                             {
                                 TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("NoTrackPlaying"));
@@ -72,7 +74,7 @@ namespace Winter
                                 // Winamp window titles look like "[%album artist% - ]['['%album%[ CD%discnumber%][ #%tracknumber%]']' ]%title%[ '//' %track artist%]".
                                 // Require that the user use ATF and replace the format with something like:
                                 // %artist% – %title%
-                                string windowTitleFull = System.Text.RegularExpressions.Regex.Replace(foobar2000Title, @"\s+\[foobar2000 v\d+\.\d+\.\d+\]", string.Empty);
+                                string windowTitleFull = System.Text.RegularExpressions.Regex.Replace(foobar2000Title, @"\s+\[foobar2000.+\]", string.Empty);
                                 string[] windowTitle = windowTitleFull.Split('–');
 
                                 // Album artwork not supported by foobar2000

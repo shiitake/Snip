@@ -157,6 +157,9 @@ namespace Winter
                 case Globals.MediaPlayerSelection.YouTube:
                     this.ToggleYouTube();
                     break;
+                case Globals.MediaPlayerSelection.Plex:
+                    this.TogglePlex();
+                    break;
             }
 
             this.toolStripMenuItemSaveSeparateFiles.Checked = Globals.SaveSeparateFiles;
@@ -242,6 +245,10 @@ namespace Winter
             else if (sender == this.toolStripMenuYouTube)
             {
                 this.ToggleYouTube();
+            }
+            else if (sender == this.toolStripMenuPlex)
+            {
+                this.TogglePlex();
             }
         }
 
@@ -345,6 +352,24 @@ namespace Winter
 
             Globals.PlayerSelection = Globals.MediaPlayerSelection.YouTube;
             TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("SwitchedToYoutube"));
+        }
+
+        private void TogglePlex()
+        {
+            this.toolStripMenuItemSpotify.Checked = false;
+            this.toolStripMenuItemItunes.Checked = false;
+            this.toolStripMenuItemWinamp.Checked = false;
+            this.toolStripMenuItemFoobar2000.Checked = false;
+            this.toolStripMenuItemVlc.Checked = false;
+            this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = true;
+
+            Globals.CurrentPlayer.Unload();
+            Globals.CurrentPlayer = new Plex();
+            Globals.CurrentPlayer.Load();
+
+            Globals.PlayerSelection = Globals.MediaPlayerSelection.Plex;
+            TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("SwitchedToPlex"));
         }
 
         private void ToolStripMenuItemSaveSeparateFiles_Click(object sender, EventArgs e)
@@ -480,10 +505,10 @@ namespace Winter
             {
                 this.ToggleArtworkTiny();
             }
-            else if (sender == this.toolStripMenuItemSmall)
-            {
-                this.ToggleArtworkSmall();
-            }
+            // else if (sender == this.toolStripMenuItemSmall)
+            // {
+                // this.ToggleArtworkSmall();
+            // }
             else if (sender == this.toolStripMenuItemMedium)
             {
                 this.ToggleArtworkMedium();
@@ -497,7 +522,7 @@ namespace Winter
         private void ToggleArtworkTiny()
         {
             this.toolStripMenuItemTiny.Checked = true;
-            this.toolStripMenuItemSmall.Checked = false;
+            // this.toolStripMenuItemSmall.Checked = false;
             this.toolStripMenuItemMedium.Checked = false;
             this.toolStripMenuItemLarge.Checked = false;
 
@@ -507,7 +532,7 @@ namespace Winter
         private void ToggleArtworkSmall()
         {
             this.toolStripMenuItemTiny.Checked = false;
-            this.toolStripMenuItemSmall.Checked = true;
+            // this.toolStripMenuItemSmall.Checked = true;
             this.toolStripMenuItemMedium.Checked = false;
             this.toolStripMenuItemLarge.Checked = false;
 
@@ -517,7 +542,7 @@ namespace Winter
         private void ToggleArtworkMedium()
         {
             this.toolStripMenuItemTiny.Checked = false;
-            this.toolStripMenuItemSmall.Checked = false;
+            // this.toolStripMenuItemSmall.Checked = false;
             this.toolStripMenuItemMedium.Checked = true;
             this.toolStripMenuItemLarge.Checked = false;
 
@@ -527,7 +552,7 @@ namespace Winter
         private void ToggleArtworkLarge()
         {
             this.toolStripMenuItemTiny.Checked = false;
-            this.toolStripMenuItemSmall.Checked = false;
+            // this.toolStripMenuItemSmall.Checked = false;
             this.toolStripMenuItemMedium.Checked = false;
             this.toolStripMenuItemLarge.Checked = true;
 

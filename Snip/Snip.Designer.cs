@@ -12,6 +12,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFoobar2000;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemVlc;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuYouTube;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuPlex;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSetFormat;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -19,7 +20,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveAlbumArtwork;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKeepSpotifyAlbumArtwork;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTiny;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSmall;
+        // private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSmall; // Disabling the small size since no small size is provided via Spotify
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMedium;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLarge;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveHistory;
@@ -73,6 +74,7 @@
             this.toolStripMenuItemFoobar2000 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemVlc = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuYouTube = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuPlex = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemSetFormat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -80,7 +82,7 @@
             this.toolStripMenuItemSaveAlbumArtwork = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemKeepSpotifyAlbumArtwork = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTiny = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemSmall = new System.Windows.Forms.ToolStripMenuItem();
+            // this.toolStripMenuItemSmall = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemMedium = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLarge = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSaveHistory = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +112,7 @@
             this.toolStripMenuItemFoobar2000,
             this.toolStripMenuItemVlc,
             this.toolStripMenuYouTube,
+            this.toolStripMenuPlex,
             this.toolStripSeparator1,
             this.toolStripMenuItemSetFormat,
             this.toolStripSeparator2,
@@ -130,7 +133,7 @@
             this.toolStripMenuItemSnipVersion.Enabled = false;
             this.toolStripMenuItemSnipVersion.Name = "toolStripMenuItemSnipVersion";
             this.toolStripMenuItemSnipVersion.Size = new System.Drawing.Size(67, 22);
-            this.toolStripMenuItemSnipVersion.Text = Globals.ResourceManager.GetString("SnipForm") + ' ' + AssemblyInformation.AssemblyShorterVersion;
+            this.toolStripMenuItemSnipVersion.Text = Globals.ResourceManager.GetString("SnipForm") + AssemblyInformation.AssemblyShorterVersion;
             // 
             // toolStripMenuItemSpotify
             // 
@@ -176,6 +179,13 @@
             this.toolStripMenuYouTube.Text = Globals.ResourceManager.GetString("YouTube");
             this.toolStripMenuYouTube.Click += new System.EventHandler(this.PlayerSelectionCheck);
             // 
+            // toolStripMenuPlex
+            // 
+            this.toolStripMenuPlex.Name = "toolStripMenuPlex";
+            this.toolStripMenuPlex.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuPlex.Text = Globals.ResourceManager.GetString("Plex");
+            this.toolStripMenuPlex.Click += new System.EventHandler(this.PlayerSelectionCheck);
+            // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
@@ -211,7 +221,7 @@
             // 
             this.toolStripMenuItemKeepSpotifyAlbumArtwork.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemTiny,
-            this.toolStripMenuItemSmall,
+            // this.toolStripMenuItemSmall,
             this.toolStripMenuItemMedium,
             this.toolStripMenuItemLarge});
             this.toolStripMenuItemKeepSpotifyAlbumArtwork.Name = "toolStripMenuItemKeepSpotifyAlbumArtwork";
@@ -230,10 +240,10 @@
             // 
             // toolStripMenuItemSmall
             // 
-            this.toolStripMenuItemSmall.Name = "toolStripMenuItemSmall";
-            this.toolStripMenuItemSmall.Size = new System.Drawing.Size(67, 22);
-            this.toolStripMenuItemSmall.Text = Globals.ResourceManager.GetString("ImageResolutionSmall");
-            this.toolStripMenuItemSmall.Click += new System.EventHandler(this.AlbumArtworkResolutionCheck);
+            // this.toolStripMenuItemSmall.Name = "toolStripMenuItemSmall";
+            // this.toolStripMenuItemSmall.Size = new System.Drawing.Size(67, 22);
+            // this.toolStripMenuItemSmall.Text = Globals.ResourceManager.GetString("ImageResolutionSmall");
+            // this.toolStripMenuItemSmall.Click += new System.EventHandler(this.AlbumArtworkResolutionCheck);
             // 
             // toolStripMenuItemMedium
             // 

@@ -90,6 +90,7 @@ namespace Winter
                         File.WriteAllText(@Application.StartupPath + @"\Snip_Album.txt", string.Empty);
                         File.WriteAllText(@Application.StartupPath + @"\Snip_Artist.txt", string.Empty);
                         File.WriteAllText(@Application.StartupPath + @"\Snip_Track.txt", string.Empty);
+                        File.WriteAllText(@Application.StartupPath + @"\Snip_TrackId.txt", string.Empty);
                     }
                 }
             }
@@ -117,16 +118,22 @@ namespace Winter
 
         public static void UpdateText(string title, string artist)
         {
-            UpdateText(title, artist, string.Empty);
+            UpdateText(title, artist, string.Empty, string.Empty);
         }
 
         public static void UpdateText(string title, string artist, string album)
+        {
+            UpdateText(title, artist, album, string.Empty);
+        }
+
+        public static void UpdateText(string title, string artist, string album, string trackId)
         {
             string output = Globals.TrackFormat + Globals.SeparatorFormat + Globals.ArtistFormat;
 
             output = output.Replace(Globals.TrackVariable, title);
             output = output.Replace(Globals.ArtistVariable, artist);
             output = output.Replace(Globals.NewLineVariable, "\r\n");
+            output = output.Replace(Globals.TrackIdVariable, trackId);
 
             if (!string.IsNullOrEmpty(album))
             {
@@ -155,6 +162,7 @@ namespace Winter
                     File.WriteAllText(@Application.StartupPath + @"\Snip_Artist.txt", Globals.ArtistFormat.Replace(Globals.ArtistVariable, artist));
                     File.WriteAllText(@Application.StartupPath + @"\Snip_Track.txt", Globals.TrackFormat.Replace(Globals.TrackVariable, title));
                     File.WriteAllText(@Application.StartupPath + @"\Snip_Album.txt", Globals.AlbumFormat.Replace(Globals.AlbumVariable, album));
+                    File.WriteAllText(@Application.StartupPath + @"\Snip_TrackId.txt", trackId);
                 }
 
                 // If saving track history is enabled, append that information to a separate file.
@@ -169,23 +177,32 @@ namespace Winter
         {
             if (!string.IsNullOrEmpty(title))
             {
-                title = title.ToUpper(CultureInfo.InvariantCulture);
+                // Spotify's search doesn't like all uppercase letters
+                // Let's see how all lowercase fairs
+                title = title.ToLowerInvariant();
 
-                title = title.Replace(@".", string.Empty);
-                title = title.Replace(@"/", string.Empty);
-                title = title.Replace(@"\", string.Empty);
-                title = title.Replace(@",", string.Empty);
-                title = title.Replace(@"'", string.Empty);
-                title = title.Replace(@"(", string.Empty);
-                title = title.Replace(@")", string.Empty);
-                title = title.Replace(@"[", string.Empty);
-                title = title.Replace(@"]", string.Empty);
-                title = title.Replace(@"!", string.Empty);
-                title = title.Replace(@"$", string.Empty);
-                title = title.Replace(@"%", string.Empty);
-                title = title.Replace(@"&", string.Empty);
-                title = title.Replace(@"?", string.Empty);
-                title = title.Replace(@":", string.Empty);
+                // For some unknown reason some versions of Spotify include
+                // "Spotify - " before the track information. I doubt this
+                // particular string would appear in any sane song title, so
+                // let's just remove it.
+                title = title.Replace(@"Spotify - ", " ");
+
+                // title = title.Replace(@".", " "); // Causes failed search result from Spotify
+                title = title.Replace(@"/", " ");
+                title = title.Replace(@"\", " ");
+                title = title.Replace(@",", " ");
+                // title = title.Replace(@"'", " "); // Causes failed search result from Spotify
+                title = title.Replace(@"(", " ");
+                title = title.Replace(@")", " ");
+                title = title.Replace(@"[", " ");
+                title = title.Replace(@"]", " ");
+                title = title.Replace(@"!", " ");
+                title = title.Replace(@"$", " ");
+                title = title.Replace(@"%", " ");
+                title = title.Replace(@"&", " ");
+                title = title.Replace(@"?", " ");
+                title = title.Replace(@":", " ");
+                title = title.Replace(@"*", " ");
 
                 title = CompactWhitespace(title);
 

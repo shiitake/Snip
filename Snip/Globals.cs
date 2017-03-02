@@ -28,10 +28,11 @@ namespace Winter
     {
         #region Fields
 
-        public const string TrackVariable = "$t";
-        public const string ArtistVariable = "$a";
-        public const string AlbumVariable = "$l";
-        public const string NewLineVariable = "$n";
+        public const string TrackVariable = "$$t";
+        public const string ArtistVariable = "$$a";
+        public const string AlbumVariable = "$$l";
+        public const string NewLineVariable = "$$n";
+        public const string TrackIdVariable = "$$i";
 
         #endregion
 
@@ -63,6 +64,8 @@ namespace Winter
         public static string ArtistFormat { get; set; }
         public static string AlbumFormat { get; set; }
 
+        public static bool RewriteUpdatedOutputFormat { get; set; }
+
         #endregion
 
         #region Enumerations
@@ -83,7 +86,8 @@ namespace Winter
             Winamp = 2,
             foobar2000 = 3,
             VLC = 4,
-            YouTube = 5
+            YouTube = 5,
+            Plex = 6
         }
 
         public enum MediaCommand : int

@@ -18,6 +18,7 @@ Winamp=Winamp
 foobar2000=foobar2000
 VLC=VLC
 YouTube=YouTube
+Plex=Plex
 
 ; This text is saved to the Snip.txt file when the user switches media players
 ; from the right-click context menu.
@@ -27,6 +28,7 @@ SwitchedToWinamp=Bytte till Winamp
 SwitchedTofoobar2000=Bytte till foobar2000
 SwitchedToVLC=Bytte till VLC
 SwitchedToYoutube=Bytte till YouTube
+SwitchedToPlex=Bytte till Plex
 
 ; This text is saved to the Snip.txt file when Snip itself is running but Snip
 ; does not detect the selected media player as running.
@@ -36,6 +38,7 @@ WinampIsNotRunning=Winamp körs inte just nu
 foobar2000IsNotRunning=foobar2000 körs inte just nu
 VLCIsNotRunning=VLC körs inte just nu
 YouTubeIsNotRunning=YouTube körs inte just nu
+PlexIsNotRunning=Plex körs inte just nu
 
 ; This text is saved to the Snip.txt file when no track is playing in the
 ; selected media file or when the user stops/pauses a playing track.
@@ -107,12 +110,12 @@ iTunesException=Var god avsluta iTunes och välj iTunes igen innuti Snip.
 SetOutputFormatForm=Ställ in outputformat
 
 ; These texts refer to setting how specific output looks when saved to any of
-; the text files.  The $t, $a, and $l variables will be filled in with the
+; the text files.  The $$t, $$a, and $$l variables will be filled in with the
 ; track, artist, and album information of the currently playing track.
-SetTrackFormat=Ställ in spårformat ($t):
+SetTrackFormat=Ställ in spårformat ($$t):
 SetSeparatorFormat=Ställ in särskiljningsformat:
-SetArtistFormat=Ställ in artistformat ($a):
-SetAlbumFormat=Ställ in albumformat ($l):
+SetArtistFormat=Ställ in artistformat ($$a):
+SetAlbumFormat=Ställ in albumformat ($$l):
 
 ; This text is displayed on the buttons within this form.  Clicking the
 ; Defaults button will restore the output format settings to their default
@@ -123,7 +126,7 @@ ButtonSave=Spara
 ; These will most likely not need to be translated.  However, if your locale
 ; uses different dashes or quotation marks then you can alternatively change
 ; them here.
-TrackFormat=“$t”
+TrackFormat=“$$t”
 SeparatorFormat=―
-ArtistFormat=$a
-AlbumFormat=$l
+ArtistFormat=$$a
+AlbumFormat=$$l

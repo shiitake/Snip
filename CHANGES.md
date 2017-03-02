@@ -1,5 +1,56 @@
 CHANGES
 =======
+**v5.6.5 (2016-Nov-27):**
+* #125 <https://github.com/dlrudie/Snip/issues/125> Fix for filtering out
+    file extensions from VLC's titlebar. Fix provided by Bartosz Wiśniewski
+    (PoprostuRonin)
+* Added Czech translation thanks to jingtongtangflee.
+* #129 <https://github.com/dlrudie/Snip/issues/129> Fix for variables being
+    replaced in track names and artist names when they shouldn't be. Because
+    of this change all variables have been changed from $var to $$var.
+* #124 <https://github.com/dlrudie/Snip/issues/124> Fix for beta versions of
+    foobar2000 not having the version stripped out of the title.
+
+**v5.6.0 (2016-Oct-01):**
+* #119 <https://github.com/dlrudie/Snip/issues/119> Fix for separate files
+    not using output format.
+* #118 <https://github.com/dlrudie/Snip/issues/118> Some users of Spotify
+    have "Spotify" in the window title and that breaks the search.
+* Fixed an issue where Snip would repeatedly query Spotify's search until
+    it got a result.
+* #87 <https://github.com/dlrudie/Snip/issues/87> Prevent Snip crashing when
+    an invalid JSON file is downloaded. It will fall back to just showing
+    the window title in this case.
+* #59 <https://github.com/dlrudie/Snip/issues/59> Fixes an issue where songs
+    with no artist in the ID3 tag would not display in Snip when using
+    iTunes.
+* When saving output format it will now update right away instead of waiting
+    for the next song to play.
+
+**v5.5.0 (2016-Sep-23):**
+* Fix for song title selection if the album has the same name as the track
+    being played.
+* #116 <https://github.com/dlrudie/Snip/issues/116> Fix for finding titles
+    from Spotify with a : in them (among other characters).
+* Added Spanish (es-CL) translation thanks to NioZero.
+* #110 <https://github.com/dlrudie/Snip/issues/110> Added hidden $i
+    variable. This can be used in the output format settings to display the
+    Spotify track ID.
+
+**v5.4.0 (2016-Sep-04):**
+* #110 <https://github.com/dlrudie/Snip/issues/110> Implemented Spotify track
+    ID saving. If saving files separately is enabled then a new file,
+    Snip_TrackId.txt, will be created that contains the Spotify track ID.
+* #101 <https://github.com/dlrudie/Snip/issues/101> When Snip queries
+    Spotify's servers for track information it will now use the result with
+    the highest "popularity" rating. This change hopefully will result in
+    more accurate track selection.
+* #100 <https://github.com/dlrudie/Snip/issues/100> Cleaned up Spotify
+    artwork downloading. It will now download the files provided in the main
+    JSON file instead of downloading the JSON for the embedded site and then
+    using the images linked there. This potentially will result in less blank
+    artwork.
+
 **v5.3.1 (2016-Mar-30):**
 * Fix for crash when using Spotify and a song title had a / in it. This was
     caused by Spotify's API not liking the use of a /. I now replaced the /

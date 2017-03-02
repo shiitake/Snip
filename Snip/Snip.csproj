@@ -63,7 +63,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>EB069B776C3093E0EB9BC20E7DE4225323521A5E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>954451B7F1C3CACCBB4518A11720C1325840AAED</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timestamp.dll</ManifestTimestampUrl>
@@ -72,6 +72,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Snip.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -119,6 +120,7 @@
     </Compile>
     <Compile Include="MediaPlayer.cs" />
     <Compile Include="Players\foobar2000.cs" />
+    <Compile Include="Players\Plex.cs" />
     <Compile Include="Players\Spotify.cs" />
     <Compile Include="Players\iTunes.cs" />
     <Compile Include="Players\VLC.cs" />
@@ -155,6 +157,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\app.manifest" />
+    <None Include="Snip.snk" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Snip.ico" />
@@ -193,6 +196,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Strings.cs-CZ.txt" />
+    <Content Include="Resources\Strings.pl-PL.txt" />
+    <Content Include="Resources\Strings.es-CL.txt" />
     <Content Include="Resources\Strings.nb-NO.txt" />
     <Content Include="Resources\Strings.sv-SE.txt" />
     <Content Include="Resources\Strings.txt" />
