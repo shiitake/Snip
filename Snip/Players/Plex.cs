@@ -13,6 +13,9 @@ namespace Winter
         //the black right-pointing triangle aka a play button
         private const char PlexRecogPattern = '\u25b6';
         private Process[] Processes;
+        AutomationPropertyChangedEventHandler propChangeHandler;
+        private AutomationElementCollection tabs = null;
+        private AutomationElement musicTab = null;
 
         public Plex()
         {
@@ -37,86 +40,111 @@ namespace Winter
             }
         }
 
-        private AutomationElementCollection tabs = null;
-
-        public override void Update()
+        public void SubscribePropertyChange(AutomationElement element)
         {
-            if (this.Processes.Length > 0)
+            Automation.AddAutomationPropertyChangedEventHandler(element,
+                TreeScope.Element,
+                propChangeHandler = new AutomationPropertyChangedEventHandler(OnPropertyChange),
+                AutomationElement.NameProperty);
+
+        }
+
+        private void OnPropertyChange(object src, AutomationPropertyChangedEventArgs e)
+        {
+            AutomationElement sourceElement = src as AutomationElement;
+            if (e.Property == AutomationElement.NameProperty)
             {
-                foreach (Process proc in this.Processes)
+                GetSongInfo(sourceElement);
+            }
+        }
+
+        public void UnsubscribePropertyChange(AutomationElement element)
+        {
+            if (propChangeHandler != null)
+            {
+                Automation.RemoveAutomationPropertyChangedEventHandler(element, propChangeHandler);
+            }
+        }
+
+        public void GetMusicTab()
+        {
+            if (this.Processes.Length <= 0) return;
+            foreach (Process proc in Processes.Where(p => p.MainWindowHandle != IntPtr.Zero))
+            {
+                try
                 {
-                    if (proc.MainWindowHandle == IntPtr.Zero)
+                    SetTabs(proc);
+                    if (tabs != null)
                     {
-                        continue;
-                    }
-
-                    try
-                    {
-                        this.SetTabs(proc);
-
-                        if (this.tabs != null)
+                        foreach (AutomationElement tab in tabs)
                         {
-                            foreach (AutomationElement tab in this.tabs)
+                            string tabTitle = tab.GetCurrentPropertyValue(AutomationElement.NameProperty).ToString();
+                            var next = tab.FindFirst(TreeScope.Children,
+                                new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Button));
+                            string nextContent =
+                                next.GetCurrentPropertyValue(AutomationElement.NameProperty).ToString();
+                            if (tabTitle.LastIndexOf(PlexRecogPattern) == 0)
                             {
-                                try
+                                if (next != null && nextContent != "")
                                 {
-                                    string tabTitle = tab.GetCurrentPropertyValue(AutomationElement.NameProperty).ToString();
-
-                                    AutomationElement next = tab.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Button));
-
-                                    if (tabTitle.LastIndexOf(PlexRecogPattern) == 0)
-                                    {
-                                        if (next != null)
-                                        {
-                                            string nextContent = next.GetCurrentPropertyValue(AutomationElement.NameProperty).ToString();
-                                            if (nextContent != "")
-                                            {
-                                                // In case a tab is playing any audio its element next to the text is an empty button (actually the speakers icon)
-                                                // If this button is "close" (or anything else than "") it's likely that there's no music from this tab and we
-                                                // can simply skip the current process.
-                                                break;
-                                            }
-                                        }
-
-                                        if (tabTitle != this.LastTitle)
-                                        {
-                                            string songTitle = tabTitle.Substring(2, tabTitle.Length - 2);
-
-                                            if (songTitle.LastIndexOf("-", StringComparison.OrdinalIgnoreCase) > 0)
-                                            {
-                                                // Assuming the video title is "Artist - Song"
-                                                string artist = songTitle.Split('-').First().Trim();
-                                                string song = songTitle.Split('-').Last().Trim();
-
-                                                TextHandler.UpdateText(song, artist);
-                                            }
-                                            else
-                                            {
-                                                TextHandler.UpdateText(songTitle);
-                                            }
-
-                                            this.LastTitle = tabTitle;
-                                        }
-
-                                        // Since we've found a music playing tab there's no need to look for additional tabs.
-                                        break;
-                                    }
+                                    break;
                                 }
-                                catch { }
+                                musicTab = tab;
+                                GetSongInfo(musicTab);
+                                break;
                             }
                         }
-                        else
-                        {
-                            // No tabs found
-                            TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("PlexIsNotRunning"));
-                        }
                     }
-                    catch
+                    else
                     {
-                        // No chrome window found
                         TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("PlexIsNotRunning"));
                     }
                 }
+                catch
+                {
+                    TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("PlexIsNotRunning"));
+                }
+            }
+        }
+
+        private void GetSongInfo(AutomationElement tab)
+        {
+            string tabTitle = tab.GetCurrentPropertyValue(AutomationElement.NameProperty).ToString();
+            if (tabTitle == LastTitle) return;
+            string songTitle = tabTitle.Substring(2, tabTitle.Length - 2);
+
+            if (songTitle.LastIndexOf("-", StringComparison.OrdinalIgnoreCase) > 0)
+            {
+                // Assuming the title is "Artist - Song"
+                string artist = songTitle.Split('-').First().Trim();
+                string song = songTitle.Split('-').Last().Trim();
+
+                TextHandler.UpdateText(song, artist);
+            }
+            else
+            {
+                TextHandler.UpdateText(songTitle);
+            }
+            LastTitle = tabTitle;
+        }
+
+        public override void Update()
+        {
+            if (musicTab != null && propChangeHandler != null) return;
+            if (musicTab == null) GetMusicTab();
+            if (propChangeHandler == null && musicTab != null ) SubscribePropertyChange(musicTab);
+            if (musicTab == null || propChangeHandler == null)
+            {
+                TextHandler.UpdateTextAndEmptyFilesMaybe(Globals.ResourceManager.GetString("PlexIsNotRunning"));
+            }
+        }
+
+        public override void Unload()
+        {
+            base.Unload();
+            if (musicTab != null)
+            {
+                UnsubscribePropertyChange(musicTab);
             }
         }
     }

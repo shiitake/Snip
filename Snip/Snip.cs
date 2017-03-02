@@ -260,6 +260,7 @@ namespace Winter
             this.toolStripMenuItemFoobar2000.Checked = false;
             this.toolStripMenuItemVlc.Checked = false;
             this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = false;
 
             Globals.CurrentPlayer.Unload();
             Globals.CurrentPlayer = new Spotify();
@@ -277,6 +278,7 @@ namespace Winter
             this.toolStripMenuItemFoobar2000.Checked = false;
             this.toolStripMenuItemVlc.Checked = false;
             this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = false;
 
             Globals.CurrentPlayer.Unload();
             Globals.CurrentPlayer = new iTunes();
@@ -294,6 +296,7 @@ namespace Winter
             this.toolStripMenuItemFoobar2000.Checked = false;
             this.toolStripMenuItemVlc.Checked = false;
             this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = false;
 
             Globals.CurrentPlayer.Unload();
             Globals.CurrentPlayer = new Winamp();
@@ -311,6 +314,7 @@ namespace Winter
             this.toolStripMenuItemFoobar2000.Checked = true;
             this.toolStripMenuItemVlc.Checked = false;
             this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = false;
 
             Globals.CurrentPlayer.Unload();
             Globals.CurrentPlayer = new foobar2000();
@@ -328,6 +332,7 @@ namespace Winter
             this.toolStripMenuItemFoobar2000.Checked = false;
             this.toolStripMenuItemVlc.Checked = true;
             this.toolStripMenuYouTube.Checked = false;
+            this.toolStripMenuPlex.Checked = false;
 
             Globals.CurrentPlayer.Unload();
             Globals.CurrentPlayer = new VLC();
@@ -345,6 +350,7 @@ namespace Winter
             this.toolStripMenuItemFoobar2000.Checked = false;
             this.toolStripMenuItemVlc.Checked = false;
             this.toolStripMenuYouTube.Checked = true;
+            this.toolStripMenuPlex.Checked = false;
 
             Globals.CurrentPlayer.Unload();
             Globals.CurrentPlayer = new YouTube();
